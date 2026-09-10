@@ -122,18 +122,25 @@ p strong{color:var(--ink);font-weight:600}
 /* ---------- masthead ---------- */
 .mast{
   display:grid;
-  grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
-  gap:clamp(2rem,5vw,4.5rem);
-  align-items:center;
+  grid-template-columns:minmax(0,1fr) auto;
+  column-gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
   padding:clamp(3rem,7vw,5.5rem) 0 clamp(2rem,4vw,3rem);
 }
+/* row 1 is the affiliation line alone; row 2 puts the portrait's top edge
+   level with the top of the name */
+.mast > .affil{grid-column:1;grid-row:1}
+.mast > .mast-text{grid-column:1;grid-row:2;min-width:0}
+.mast > .portrait{grid-column:2;grid-row:2;align-self:start}
 @media (max-width:860px){
-  .mast{grid-template-columns:minmax(0,1fr);padding-bottom:1.5rem}
-  .portrait{max-width:18rem}
+  .mast{grid-template-columns:minmax(0,1fr);row-gap:.5rem}
+  .mast > .affil,.mast > .mast-text,.mast > .portrait{grid-column:1;grid-row:auto}
+  .mast{padding-bottom:1.5rem}
+  .portrait{max-width:16rem}
 }
 
 /* ---------- portrait ---------- */
-.portrait{margin:0;max-width:22rem;justify-self:end}
+.portrait{margin:0;width:17rem;max-width:100%}
 .portrait img{
   display:block;width:100%;height:auto;
   aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;
@@ -289,8 +296,8 @@ img{max-width:100%}
 <div class="wrap">
 
   <header class="mast">
-    <div>
-      <p class="eyebrow affil">New York, NY · Columbia University Irving Medical Center</p>
+    <p class="eyebrow affil">New York, NY · Columbia University Irving Medical Center</p>
+    <div class="mast-text">
       <h1 class="name">Yiran <em>“Caterina”</em> Cheng</h1>
       <p class="name-zh">In vivo neuroimmunologist · Ph.D. candidate, Cellular &amp; Molecular Physiology</p>
       <p class="lede">I study how <b>T cells</b> get into the aging human brain, where they sit relative to blood vessels, and what they do to <b>microglia</b> once they arrive.</p>
