@@ -148,9 +148,15 @@ p strong{color:var(--ink);font-weight:600}
 .eyebrow{
   font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-3);margin:0 0 1.1rem;
-  white-space:nowrap;overflow-x:auto;
+  max-width:none;
 }
-@media (max-width:560px){.eyebrow{white-space:normal;letter-spacing:.1em}}
+/* the affiliation line stays on a single row at every width: it shrinks
+   rather than folding, and never inherits the reading measure */
+.affil{
+  white-space:nowrap;
+  font-size:clamp(.58rem,2.2vw,.72rem);
+  letter-spacing:clamp(.06em,.4vw,.14em);
+}
 .name{
   font-family:var(--f-display);
   font-weight:600;
@@ -284,7 +290,7 @@ img{max-width:100%}
 
   <header class="mast">
     <div>
-      <p class="eyebrow">New York, NY · Columbia University Irving Medical Center</p>
+      <p class="eyebrow affil">New York, NY · Columbia University Irving Medical Center</p>
       <h1 class="name">Yiran <em>“Caterina”</em> Cheng</h1>
       <p class="name-zh">In vivo neuroimmunologist · Ph.D. candidate, Cellular &amp; Molecular Physiology</p>
       <p class="lede">I study how <b>T cells</b> get into the aging human brain, where they sit relative to blood vessels, and what they do to <b>microglia</b> once they arrive.</p>
